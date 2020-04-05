@@ -40,7 +40,8 @@ def test(net_g, data_loader):
 if __name__ == '__main__':
     # parse args
     args = args_parser()
-    args.device = torch.device('cuda:{}'.format(args.gpu) if torch.cuda.is_available() and args.gpu != -1 else 'cpu')
+    use_cuda = not args.no_cuda and torch.cuda.is_available()
+    args.device = torch.device('cuda' if use_cuda else 'cpu')
 
     torch.manual_seed(args.seed)
 
