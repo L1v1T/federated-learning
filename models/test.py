@@ -8,7 +8,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 
-def test_img(net_g, datatest, args, device):
+def test_img(net_g, datatest, args):
     net_g.eval()
     # testing
     test_loss = 0
@@ -16,7 +16,7 @@ def test_img(net_g, datatest, args, device):
     data_loader = DataLoader(datatest, batch_size=args.bs)
     l = len(data_loader)
     for idx, (data, target) in enumerate(data_loader):
-        data, target = data.to(device), target.to(device)
+        data, target = data.to(args.device), target.to(args.device)
         log_probs = net_g(data)
         # sum up batch loss
         test_loss += F.cross_entropy(log_probs, target, reduction='sum').item()
