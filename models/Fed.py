@@ -8,9 +8,8 @@ from torch import nn
 
 
 def FedAvg(w, w_glob):
-    for i in range(0, len(w)):
-        w_delta = w_glob["layer_hidden.bias"] - w[0]["layer_hidden.bias"]
-        print(w_delta)
+    w_delta = w_glob["layer_hidden.bias"] - w[0]["layer_hidden.bias"]
+    print(w_delta)
     w_avg = copy.deepcopy(w[0])
     for k in w_avg.keys():
         for i in range(1, len(w)):
