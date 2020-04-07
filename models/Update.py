@@ -22,17 +22,6 @@ class DatasetSplit(Dataset):
         image, label = self.dataset[self.idxs[item]]
         return image, label
 
-def label_count(dataloader):
-    labelcount = []
-    for _ in range(10):
-        labelcount.append(0)
-    
-    for data, labels in dataloader:
-        for label in labels:
-            labelcount[label] += 1
-    for label_idx, count in enumerate(labelcount):
-        print("{}: {}\t".format(label_idx, count), end="")
-    print("")
 
 class LocalUpdate(object):
     def __init__(self, args, dataset=None, idxs=None):
@@ -40,7 +29,6 @@ class LocalUpdate(object):
         self.loss_func = nn.CrossEntropyLoss()
         self.selected_clients = []
         self.ldr_train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
-        label_count(self.ldr_train)
 
     def train(self, net):
         net.train()
