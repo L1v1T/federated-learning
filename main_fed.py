@@ -21,7 +21,7 @@ from models.test import test_img
 if __name__ == '__main__':
     # parse args
     args = args_parser()
-    args.device = torch.device('cuda' if torch.cuda.is_available() and args.gpu != -1 else 'cpu')
+    args.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # load dataset and split users
     if args.dataset == 'mnist':
