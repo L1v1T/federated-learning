@@ -60,6 +60,9 @@ if __name__ == '__main__':
     print(net_glob)
     net_glob.train()
 
+    
+    print("Learning Rate: {:.6f}.".format(args.lr))
+
     # copy weights
     w_glob = net_glob.state_dict()
 
