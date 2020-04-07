@@ -95,6 +95,10 @@ if __name__ == '__main__':
         print('Round {:3d}, Average loss {:.3f}'.format(iter, loss_avg))
         loss_train.append(loss_avg)
 
+        # print test loss
+        acc_test, loss_test = test_img(net_glob, dataset_test, args)
+        print("Testing accuracy: {:.2f}, Loss: {:.6f}.".format(acc_test, loss_test))
+
     # plot loss curve
     plt.figure()
     plt.plot(range(len(loss_train)), loss_train)
